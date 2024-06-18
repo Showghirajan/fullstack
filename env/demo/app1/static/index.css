@@ -1,0 +1,39 @@
+h1{
+    text-align:center;
+    font-weight:bold;
+    background-color:greenyellow;
+}
+
+img{
+   
+    width: 100%;
+    
+   
+}
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+.box1 input[type="search"]{
+    border-color:lawngreen;
+    border-width:thick;
+    height:50px;
+    width:500px;
+    text-size-adjust:auto;
+    text-align:left;
+    position:absolute;
+    top:50%;
+    left:35%;
+}
+#drug-info {
+    margin-top: 20px;
+}
+
+p {
+    margin-bottom: 10px;
+}
