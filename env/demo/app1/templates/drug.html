@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="{% static 'cover.jpeg' %}" >
+    <div class="box1">
+    <form method="GET" action="">
+        <input type="search" name="search" placeholder="Enter drug name">
+    </form>
+</div>
+<h2>Drug Uses:</h2>
+<ul>
+{% for i in data.results %}
+
+    <li>{{i.purpose}}</li>
+   
+</ul>
+{% endfor %}
+</body>
+</html>
+    

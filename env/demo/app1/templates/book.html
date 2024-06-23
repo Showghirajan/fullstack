@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment</title>
+    <link rel="stylesheet" href="{% static 'book.css' %}">
+</head>
+<style>
+    body {
+        background-image: url("{% static 'book.jpeg' %}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden; 
+    }
+</style>
+<body>
+<div class="container">
+<h1>BOOK APPOINTMENT</h1>
+<div class="booking">
+        <form method="POST">
+            {% csrf_token %}
+           <label>Name</label><input type="text"  name="name" required>
+            <label>Email</label><input type="email"  name="email" required>
+            <label>Address</label><input type="text"  name="address" required>
+            <label>Date_Time</label><input type="datetime-local" name="dt" required>
+            <button type="submit" class="formbold-btn">Submit</button>
+        </form>
+</div>
+</div>
+{% if messages %}
+<ul class="messages">
+    {% for i in messages %}
+    <li>{{i}}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>
+
+    

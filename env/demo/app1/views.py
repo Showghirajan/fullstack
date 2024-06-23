@@ -1,63 +1,51 @@
 # app1/views.py
 
-from django.shortcuts import render
-import requests
-from requests.exceptions import RequestException
+from django.shortcuts import render,redirect
+from .models import Appointment
+from django.contrib import messages
+from django.core.mail import send_mail
 
+#import requests
+#key='bx9Qm8FdnFsPDkU3dIIrUa5d2dfG1hRHampsHy37'
+def drug(request):
+   # data=None
+   # name=request.GET.get('search')
+    ##url=f'https://api.fda.gov/drug/label.json?search={name}&api_key={key}'
+    #response=requests.get(url)
+    #data=response.json()
+    #results = data['results']
+    #print(results)
+    #context={
+     #   'results':results   }
+    #return render(request,'drug.html',context)
+    return render(request,'drug.html')
 def index(request):
-    drug_name = request.GET.get('search', '')
-    uses = None
-    
-    if drug_name:
-        url = f'https://actual-api-domain.com/drugs/{drug_name}/uses'
-        
-        try:
-            response = requests.get(url)
-            response.raise_for_status()  # Raise HTTPError for bad responses
-            
-            if response.status_code == 200:
-                try:
-                    data = response.json()  # Attempt to parse response as JSON
-                    uses = data.get('uses', 'No information available.')
-                    print(f"Uses fetched from API: {uses}")  # Debug print statement
-                except ValueError:
-                    uses = f"Non-JSON response received from API for {drug_name}."
-                    print(f"Non-JSON response received from API for {drug_name}. Response content: {response.text}")  # Debug print statement
-        
-        except RequestException as e:
-            print(f"Error fetching data from API: {e}")
-            uses = f"Error fetching data for {drug_name}. Please try again later."
-    
-    context = {
-        'drug_name': drug_name,
-        'uses': uses,
-    }
-    
-    return render(request, 'index.html', context)
+    return render(request,'map.html')
+def book(request):
+    if request.method == 'POST':
+        input_name = request.POST.get('name')
+        input_email = request.POST.get('email')
+        input_address = request.POST.get('address')
+        input_dt = request.POST.get('dt')
 
-   
+        appoint = Appointment(
+            p_name=input_name,
+            p_email=input_email,
+            p_address=input_address,
+            p_date_time=input_dt
+        )
+        appoint.save()
+        send_mail(
+            subject='New Appointment Booked',
+            message=f'Hi Doctor,\n\nA new appointment has been booked.\n\nName: {input_name}\nEmail: {input_email}\nAddress: {input_address}\nDate & Time: {input_dt}',
+            from_email='sofiyaraj27@gmail.com', 
+            recipient_list=['showghirajan9789@gmail.com','lochanr2965@gmail.com'], 
+            fail_silently=False,
+        )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        messages.success(request, f"Thank you {input_name}, your Appointment is booked successfully!")
+        return redirect('book')
+    return render(request,'book.html')
+def doctor(request):
+    booked=Appointment.objects.all().order_by('-p_date_time')
+    return render(request,'doctor.html',{'booked_list':booked})

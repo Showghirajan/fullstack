@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointment</title>
+    <link rel="stylesheet" href="{% static 'doctor.css' %}">
+</head>
+<body>
+    <div class="doc_home">
+        <h1>DOCTOR DASHBOARD</h1>
+        <h2>BOOOKED APPOINTMENTS</h2>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>EMAIL</th>
+                <th>ADDRESS</th>
+                <th>DATE & TIME</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in booked_list %}
+            <tr>
+                <td>{{i.p_name}}</td>
+                <td>{{i.p_email}}</td>
+                <td>{{i.p_address}}</td>
+                <td>{{i.p_date_time}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,11 @@
+
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <img src="{% static 'cover.jpeg' %}" >
+    <div class="map_url">
+      <h1>  <a href="{% url 'drug' %}">FIND DRUG</a></h1><br>
+        <h1><a href="{% url 'book' %}">BOOK APPOINTMENT</a></h1>
+    </div>
+{% endblock %}

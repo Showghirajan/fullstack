@@ -1,25 +1,26 @@
+<!-- base.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World of Health Care</title>
     <link rel="stylesheet" href="{% static 'index.css' %}">
 </head>
+
 <body>
-    <h1>WORLD OF HEALTH CARE</h1>
-    <img src="{% static 'cover.jpeg' %}" />
-    <div class="box1">
-        <form method="GET" action="{% url 'index' %}">
-            <input type="search" name="search" placeholder="Enter drug name"/>
-            <button type="submit">Search</button>
-        </form>
-    </div>
-    <div id="drug-info">
-        {% if uses %}
-        <div id="drug-info">
-            <h2>Uses of {{ drug_name }}</h2>
-            <p>{{ uses }}</p>
-        </div>
-        {% endif %}
-    </div>
+  
+        <h1>WORLD OF HEALTH CARE</h1>
+       
+  
+    {% block content %}
+
+    {% endblock %}
 </body>
 </html>
+
+
+ 
+
