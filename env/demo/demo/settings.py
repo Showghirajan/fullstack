@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7sa#_%nszu*xp!fwr$)$5-ec5t0*ji%a^izk@@j%=gxx3$-rp4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['showghi-cdc4d5d3hdfnf3fg.southcentralus-01.azurewebsites.net']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -122,7 +122,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'app1/static')]
 # Azure hosting
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 STATIC_ROOT = BASE_DIR / 'app1/staticfiles'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
